@@ -1,0 +1,37 @@
+[Unit]
+Description=Vaultwarden password server
+Documentation=https://github.com/dani-garcia/vaultwarden/wiki
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=vaultwarden
+Group=vaultwarden
+StateDirectory=vaultwarden
+StateDirectoryMode=0700
+WorkingDirectory=/var/lib/vaultwarden
+Environment=ENV_FILE=/etc/vaultwarden/vaultwarden.env
+ExecStart=/usr/bin/vaultwarden
+# USR1 writes a SQLite backup under the data directory.
+ExecReload=/usr/bin/kill -USR1 $MAINPID
+Restart=on-failure
+RestartSec=2
+UMask=0077
+LimitNOFILE=1048576
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectClock=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,3 @@
+# The env file is packaged as root:root. Group it once the user exists.
+z /etc/vaultwarden/vaultwarden.env 0640 root vaultwarden - -
+d /var/lib/vaultwarden 0700 vaultwarden vaultwarden - -

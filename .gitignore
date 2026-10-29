@@ -1,0 +1,9 @@
+_work/
+BUILD/
+BUILDROOT/
+RPMS/
+SRPMS/
+*.buildlog
+*.tar.gz
+*.tar.zst
+*.tar.xz
